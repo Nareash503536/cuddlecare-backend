@@ -46,7 +46,7 @@ public class User {
     private String dob;
 
     //Foreign classes
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
                 joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
                 inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")}
@@ -97,4 +97,5 @@ public class User {
         this.address = address;
         this.dob = dob;
     }
+
 }

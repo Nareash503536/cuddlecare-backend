@@ -1,5 +1,6 @@
 package com.example.CuddleCare.runner;
 
+import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.service.RoleService;
 import com.example.CuddleCare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class MyRunner implements CommandLineRunner {
@@ -21,6 +23,27 @@ public class MyRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         createRoles();
         createUsers();
+        assignRoles();
+    }
+
+    private void assignRoles() {
+        List<User> allUsers = userService.getAllUsers();
+        final int[] i = {1};
+        allUsers.forEach(user -> {
+            if(i[0] % 5 == 1)
+                userService.AssignRoleToUser(user.getEmail(), "Admin");
+            else if(i[0] % 5 == 2)
+                userService.AssignRoleToUser(user.getEmail(), "Parent");
+            else if(i[0] % 5 == 3)
+                userService.AssignRoleToUser(user.getEmail(), "ContentManager");
+            else if(i[0] % 5 == 4)
+                userService.AssignRoleToUser(user.getEmail(), "CareGiver");
+            else if(i[0] % 5 == 0) {
+                userService.AssignRoleToUser(user.getEmail(), "GuestUser");
+            }
+            i[0]++;
+        }
+        );
     }
 
     private void createUsers() {

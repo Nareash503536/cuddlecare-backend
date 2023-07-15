@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -31,7 +32,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User loadUSerUserByEmail(String email) {
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public User loadUserByEmail(String email) {
         return userDao.findByEmail(email);
     }
 
