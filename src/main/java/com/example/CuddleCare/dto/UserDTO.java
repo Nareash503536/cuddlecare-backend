@@ -6,7 +6,6 @@ import com.example.CuddleCare.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -17,7 +16,7 @@ public class UserDTO{
     private String email;
     private String nic;
     private String address;
-    private Date dob;
+    private String dob;
     private List<Role> roles;
     
 }

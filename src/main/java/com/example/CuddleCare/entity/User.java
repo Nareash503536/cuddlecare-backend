@@ -3,7 +3,6 @@ package com.example.CuddleCare.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -44,7 +43,7 @@ public class User {
 
     @Basic
     @Column(name = "dob")
-    private Date dob;
+    private String dob;
 
     //Foreign classes
     @ManyToMany(cascade = CascadeType.ALL)
@@ -90,7 +89,7 @@ public class User {
         this.roles.remove(role);
     }
 
-    public User(String userName, String password, String nic, String email, String address, Date dob) {
+    public User(String userName, String password, String nic, String email, String address, String dob) {
         this.userName = userName;
         this.password = password;
         this.nic = nic;

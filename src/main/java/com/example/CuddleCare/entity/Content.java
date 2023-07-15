@@ -12,7 +12,7 @@ import java.util.Objects;
 @ToString
 @Builder
 @Entity
-@Table(name = "users")
+@Table(name = "content")
 public class Content {
 
     private enum types{HealthTip, PremiumVideo}

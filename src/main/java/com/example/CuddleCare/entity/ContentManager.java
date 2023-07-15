@@ -19,7 +19,7 @@ public class ContentManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contentmanager_id", nullable = false)
-    private Long contentUserID;
+    private Long contentManagerID;
 
     @OneToMany(mappedBy = "postedContentManager", cascade = CascadeType.ALL)
     private Set<Content> contents = new HashSet<>();
@@ -33,12 +33,12 @@ public class ContentManager {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContentManager that = (ContentManager) o;
-        return Objects.equals(contentUserID, that.contentUserID);
+        return Objects.equals(contentManagerID, that.contentManagerID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contentUserID);
+        return Objects.hash(contentManagerID);
     }
 
     @OneToMany(mappedBy = "contentManager", cascade = CascadeType.ALL)
