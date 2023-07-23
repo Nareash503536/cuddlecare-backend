@@ -14,6 +14,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "expense")
 public class Expense {
+    public Expense(String expenseName, String notes, Double amount) {
+        this.expenseID = expenseID;
+        this.expenseName = expenseName;
+        this.notes = notes;
+        this.amount = amount;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "expense_ID", nullable = false)
@@ -23,6 +30,9 @@ public class Expense {
     @Column(name = "expense_name", nullable = false)
     private String expenseName;
 
+    @Basic
+    @Column(name = "notes", nullable = false)
+    private String notes;
 
     @Basic
     @Column(name = "date")

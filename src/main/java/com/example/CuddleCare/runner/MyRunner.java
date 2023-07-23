@@ -1,6 +1,9 @@
 package com.example.CuddleCare.runner;
 
+
+
 import com.example.CuddleCare.entity.User;
+import com.example.CuddleCare.service.ExpenseService;
 import com.example.CuddleCare.service.RoleService;
 import com.example.CuddleCare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +22,19 @@ public class MyRunner implements CommandLineRunner {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ExpenseService expenseService;
     @Override
     public void run(String... args) throws Exception {
         createRoles();
         createUsers();
         assignRoles();
+        createExpense();
+    }
+
+    private void createExpense() {
+        expenseService.createExpense("Expense 1", "Expense 1 notes", 100.0);
+        expenseService.createExpense("Expense 2", "Expense 2 notes", 200.0);
     }
 
     private void assignRoles() {
