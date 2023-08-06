@@ -4,4 +4,6 @@ import com.example.CuddleCare.entity.Role;
 
 public interface RoleService{
     Role createRole(String role);
+
+    Role getRoleByName(String roleName);
 }

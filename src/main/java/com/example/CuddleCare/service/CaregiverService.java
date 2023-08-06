@@ -6,4 +6,6 @@ public interface CaregiverService {
     
     CaregiverDTO createCaregiver(CaregiverDTO caregiverDTO);
 
+    CaregiverDTO assignCaregiverRole(CaregiverDTO caregiverDTO);
+
 }

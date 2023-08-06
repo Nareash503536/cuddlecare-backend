@@ -1,19 +1,17 @@
 package com.example.CuddleCare.service.Impl;
 
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.example.CuddleCare.dao.CaregiverDao;
-import com.example.CuddleCare.dao.RoleDao;
 import com.example.CuddleCare.dao.UserDao;
 import com.example.CuddleCare.dto.CaregiverDTO;
-import com.example.CuddleCare.mapper.CaregiverMapper;
-import com.example.CuddleCare.mapper.UserMapper;
 import com.example.CuddleCare.entity.Caregiver;
 import com.example.CuddleCare.entity.User;
+import com.example.CuddleCare.mapper.CaregiverMapper;
+import com.example.CuddleCare.mapper.UserMapper;
 import com.example.CuddleCare.service.CaregiverService;
 import com.example.CuddleCare.service.UserService;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 
 @Service
@@ -47,5 +45,17 @@ public class CaregiverServiceImpl implements CaregiverService {
         Caregiver savedCaregiver = caregiverDao.save(caregiver);
         return caregiverMapper.FromCaregiver(savedCaregiver);
     }
+
+    @Override
+    public CaregiverDTO assignCaregiverRole(CaregiverDTO caregiverDTO) {
+        User user = userService.loadUserByEmail(caregiverDTO.getUser().getEmail());
+        userService.AssignRoleToUser(user.getEmail(), "Caregiver");
+        Caregiver caregiver = caregiverMapper.FromCaregiverDto(caregiverDTO);
+        caregiver.setUser(user);
+        Caregiver savedCaregiver = caregiverDao.save(caregiver);
+        return caregiverMapper.FromCaregiver(savedCaregiver);
+    }
+
+
 
 }

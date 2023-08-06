@@ -11,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class CuddleCareApplication implements CommandLineRunner {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(CuddleCareApplication.class, args);
 	}

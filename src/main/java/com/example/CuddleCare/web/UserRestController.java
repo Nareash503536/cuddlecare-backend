@@ -70,7 +70,7 @@ public class UserRestController {
             JWTVerifier jwtVerifier = JWT.require(algorithm).build();
             DecodedJWT decodedJWT = jwtVerifier.verify(jwtRefreshToken);
             String email = decodedJWT.getSubject();
-            User user = userService.loadUserByUsername(email);
+            User user = userService.loadUserByEmail(email);
             String jwtAccessToken = jwtHelper.generateAccessToken(user.getEmail(), user.getRoles().stream().map(Role::getRoleName).collect(Collectors.toList()));
             response.setContentType("application/json");
             new ObjectMapper().writeValue(response.getOutputStream(), jwtHelper.getTokensMap(jwtAccessToken, jwtRefreshToken));

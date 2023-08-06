@@ -48,4 +48,14 @@ public class ParentServiceImpl implements ParentService {
         // TODO Auto-generated method stub
         return parentDao.findByParentID(parentId);
     }
+
+    @Override
+    public ParentDTO assignParentRole(ParentDTO parentDTO) {
+        User user = userService.loadUserByEmail(parentDTO.getUser().getEmail());
+        userService.AssignRoleToUser(user.getEmail(), "Parent");
+        Parents parent = parentMapper.FromParentDto(parentDTO);
+        parent.setUser(user);
+        Parents savedParent = parentDao.save(parent);
+        return parentMapper.FromParent(savedParent);
+    }
 }
