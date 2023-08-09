@@ -73,4 +73,14 @@ public class Baby {
 
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
+	
+	public Long getBabyId() {
+        if (babyID != null) {
+            return babyID;
+        }
+        return null;
+    }
+
+    public void setBabyId(Long babyId) {
+    }
 }

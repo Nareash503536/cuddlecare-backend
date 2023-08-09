@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.Instant;
 import java.util.Objects;
 
 @Getter
@@ -19,15 +20,19 @@ public class Sleep {
     @Column(name = "sleep_ID", nullable = false)
     private Long sleepID;
 
-    private enum SleepType{Nap, NightSleep}
+    public enum SleepType{Nap, NightSleep}
 
     @Basic
     @Column(name = "sleep_start_time")
-    private Time sleepStartTime;
+    private Instant sleepStartTime;
 
     @Basic
     @Column(name = "sleep_end_time")
-    private Time sleepEndTime;
+    private Instant sleepEndTime;
+
+    @Basic
+    @Column(name = "sleep_duration")
+    private Time sleepDuration;
 
     @Basic
     @Column(name = "sleep_type")
@@ -48,6 +53,13 @@ public class Sleep {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "baby_id", referencedColumnName = "baby_id")
     private Baby baby;
+
+    public Long getBabyId() {
+        if (baby != null) {
+            return baby.getBabyId();
+        }
+        return null;
+    }
 
     @Override
     public boolean equals(Object o) {
