@@ -1,16 +1,32 @@
 package com.example.CuddleCare.runner;
 
-
-
+import com.example.CuddleCare.dto.BudgetDTO;
+import com.example.CuddleCare.dto.ExpenseDTO;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.service.ExpenseService;
 import com.example.CuddleCare.service.RoleService;
+import com.example.CuddleCare.service.BudgetService;
+
+
 import com.example.CuddleCare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.example.CuddleCare.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -23,19 +39,74 @@ public class MyRunner implements CommandLineRunner {
     private UserService userService;
 
     @Autowired
+    private BudgetService budgetService;
+
+    @Autowired
     private ExpenseService expenseService;
+
     @Override
     public void run(String... args) throws Exception {
         createRoles();
         createUsers();
         assignRoles();
         createExpense();
+        createBudget();
     }
 
+
     private void createExpense() {
-        expenseService.createExpense("Expense 1", "Expense 1 notes", 100.0);
-        expenseService.createExpense("Expense 2", "Expense 2 notes", 200.0);
+        ExpenseDTO expenseDTO = new ExpenseDTO();
+        expenseDTO.setAmount(700.0);
+        expenseDTO.setExpenseName("Food");
+        expenseDTO.setNotes("Pizza at Pizza hut");
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = sdf.parse("2023/07/31");
+            expenseDTO.setDate(date);
+        }catch (ParseException e){
+            e.printStackTrace();
+            return;
+        }
+
+        expenseService.createExpense(expenseDTO);
+
+        ExpenseDTO expenseDTO2 = new ExpenseDTO();
+        expenseDTO2.setAmount(300.0);
+        expenseDTO2.setExpenseName("Food");
+        expenseDTO2.setNotes("biriyani");
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = sdf.parse("2023/08/01");
+            expenseDTO2.setDate(date);
+        }catch (ParseException e){
+            e.printStackTrace();
+            return;
+        }
+        expenseService.createExpense(expenseDTO2);
     }
+    private void createBudget() {
+        BudgetDTO budgetDTO = new BudgetDTO();
+        budgetDTO.setAmount(1000.0);
+        budgetDTO.setBudgetName("1st week budget");
+
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Date date = sdf.parse("2023/07/28");
+            Date datenew = sdf.parse("2023/07/29");
+            budgetDTO.setStartdate(date);
+            budgetDTO.setEnddate(datenew);
+        }catch (ParseException e){
+            e.printStackTrace();
+            return;
+        }
+
+        budgetService.createBudget(budgetDTO);
+
+    }
+
 
     private void assignRoles() {
         List<User> allUsers = userService.getAllUsers();

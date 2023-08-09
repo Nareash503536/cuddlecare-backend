@@ -13,6 +13,9 @@ public class ExpenseMapper {
         expense.setExpenseName(expenseDto.getExpenseName());
         expense.setNotes(expenseDto.getNotes());
         expense.setAmount(expenseDto.getAmount());
+        expense.setDate(expenseDto.getDate());
+
+
         return expense;
     }
 
@@ -21,6 +24,8 @@ public class ExpenseMapper {
         expenseDto.setExpenseName(expense.getExpenseName());
         expenseDto.setNotes(expense.getNotes());
         expenseDto.setAmount(expense.getAmount());
+        expenseDto.setDate(expense.getDate());
+
         return expenseDto;
     }
 }

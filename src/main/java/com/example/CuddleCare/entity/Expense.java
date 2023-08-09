@@ -14,11 +14,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "expense")
 public class Expense {
-    public Expense(String expenseName, String notes, Double amount) {
+    public Expense(String expenseName, String notes, Double amount, Date date) {
         this.expenseID = expenseID;
         this.expenseName = expenseName;
         this.notes = notes;
         this.amount = amount;
+        this.date = date;
+
+
     }
 
     @Id
@@ -33,6 +36,8 @@ public class Expense {
     @Basic
     @Column(name = "notes", nullable = false)
     private String notes;
+
+
 
     @Basic
     @Column(name = "date")

@@ -8,23 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
-public class ExpenseDTO{
+public class BudgetDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long expenseID;
+    private Long budgetID;
 
-    private String expenseName;
-
-    private String notes;
+    private String budgetName;
 
     private Double amount;
 
-    private Date date;
+    private Date startdate;
 
+    private Date enddate;
 
 
 
