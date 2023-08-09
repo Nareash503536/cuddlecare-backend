@@ -51,11 +51,11 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createRoles();
-        createUsers();
-        assignRoles();
-        createExpense();
-        createBudget();
+        // createRoles();
+        // createUsers();
+        // assignRoles();
+        // createExpense();
+        // createBudget();
     }
 
 

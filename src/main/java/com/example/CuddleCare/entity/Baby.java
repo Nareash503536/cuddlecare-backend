@@ -88,4 +88,14 @@ public class Baby {
         this.parents.add(parent);
         parent.getBabies().add(this);
     }
+	
+	public Long getBabyId() {
+        if (babyID != null) {
+            return babyID;
+        }
+        return null;
+    }
+
+    public void setBabyId(Long babyId) {
+    }
 }
