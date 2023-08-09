@@ -14,13 +14,12 @@ import java.util.Set;
 @ToString
 @Builder
 @Entity
-@Table(name = "parent")
+@Table(name = "meal")
 public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "meal_id", nullable = false)
     private Long mealID;
-
 
     @Basic
     @Column(name = "meal_name")

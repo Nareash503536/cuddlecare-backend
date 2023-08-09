@@ -19,9 +19,9 @@ public class Caregiver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "caregiver_id", nullable = false)
-    private Long careGiverID;
+    private Long caregiverID;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
@@ -30,12 +30,12 @@ public class Caregiver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Caregiver caregiver = (Caregiver) o;
-        return Objects.equals(careGiverID, caregiver.careGiverID);
+        return Objects.equals(caregiverID, caregiver.caregiverID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(careGiverID);
+        return Objects.hash(caregiverID);
     }
 
     @OneToMany(mappedBy = "caregiver", cascade = CascadeType.ALL)

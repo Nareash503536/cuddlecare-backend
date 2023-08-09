@@ -2,6 +2,7 @@ package com.example.CuddleCare.service.Impl;
 
 import com.example.CuddleCare.dao.RoleDao;
 import com.example.CuddleCare.dao.UserDao;
+import com.example.CuddleCare.dto.UserDTO;
 import com.example.CuddleCare.entity.Role;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.service.UserService;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loadUserByUsername(String Username) {
-        return userDao.findByUserName(Username);
+        return userDao.findByUsername(Username);
     }
 
     @Override
@@ -42,15 +43,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(String username, String password, String email, String nic, String address, String dob) {
-        String encodedPassword = this.passwordEncoder.encode(password);
-        return userDao.save(new User(username, encodedPassword, email, nic, address, dob));
+    public User createUser(UserDTO userDTO) {
+        String encodedPassword = this.passwordEncoder.encode(userDTO.getPassword());
+        return userDao.save(new User(
+                userDTO.getUsername(),
+                encodedPassword,
+                userDTO.getEmail(),
+                userDTO.getDob(),
+                userDTO.getContactNumber(),
+                userDTO.getGender(),
+                userDTO.getRelationship()
+        ));
     }
 
     @Override
     public void AssignRoleToUser(String email, String roleName) {
-        User user = userDao.findByEmail(email);
+        User user = loadUserByEmail(email);
         Role role = roleDao.findByRoleName(roleName);
-        user.getRoles().add(role);
+        user.assignRoleToUser(role);
     }
+
+    @Override
+    public void authenticateUser(String email) {
+        // TODO Auto-generated method stub
+        User user = loadUserByEmail(email);
+        user.setAuthenticated(true);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userDao.save(user);
+    }
+
 }

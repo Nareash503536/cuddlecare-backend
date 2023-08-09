@@ -2,6 +2,7 @@
 
 package com.example.CuddleCare.service;
 
+import com.example.CuddleCare.dto.UserDTO;
 import com.example.CuddleCare.entity.User;
 
 import java.util.List;
@@ -14,14 +15,14 @@ public interface UserService {
 
     User loadUserByEmail(String email);
 
-    User createUser(String username, 
-                    String password, 
-                    String email, 
-                    String nic,
-                    String address,
-                    String dob);
+    User createUser(UserDTO userDTO);
 
     void AssignRoleToUser(String email, String roleName);
+
+    void authenticateUser(String email);
+
+    User updateUser(User user);
+
 }
 
 

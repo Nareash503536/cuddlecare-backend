@@ -4,7 +4,6 @@ package com.example.CuddleCare.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,13 +16,22 @@ import java.util.Set;
 @Entity
 @Table(name = "baby")
 public class Baby {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "baby_ID", nullable = false)
     private Long babyID;
 
     @Basic
-    @Column(name = "baby_Name", nullable = false, unique = true)
+    @Column(name = "gender")
+    private String gender;
+
+    @Basic
+    @Column(name = "dob")
+    private String dob;
+
+    @Basic
+    @Column(name = "baby_Name", nullable = false)
     private String babyName;
 
     @Override
@@ -31,17 +39,13 @@ public class Baby {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Baby baby = (Baby) o;
-        return Objects.equals(babyID, baby.babyID) && Objects.equals(babyName, baby.babyName) && Objects.equals(babyDOB, baby.babyDOB);
+        return Objects.equals(babyID, baby.babyID) && Objects.equals(babyName, baby.babyName) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(babyID, babyName, babyDOB);
+        return Objects.hash(babyID, babyName);
     }
-
-    @Basic
-    @Column(name = "baby_DOB", nullable = false)
-    private Date babyDOB;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "caregiver_id", referencedColumnName = "caregiver_id")
@@ -73,4 +77,15 @@ public class Baby {
 
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
+
+    public Baby(String BabyGender, String BabyDOB, String BabyName){
+        this.dob = BabyDOB;
+        this.babyName = BabyName;
+        this.gender = BabyGender;
+    }
+
+    public void addParentToBaby(Parents parent) {
+        this.parents.add(parent);
+        parent.getBabies().add(this);
+    }
 }

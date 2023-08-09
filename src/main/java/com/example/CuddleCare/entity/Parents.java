@@ -22,10 +22,10 @@ public class Parents {
     private Long parentID;
 
     @Basic
-    @Column(name = "pro_access")
+    @Column(name = "pro_access", columnDefinition = "boolean default false")
     private Boolean proAccess;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 

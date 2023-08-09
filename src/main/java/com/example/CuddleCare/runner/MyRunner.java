@@ -4,6 +4,10 @@ import com.example.CuddleCare.dto.BudgetDTO;
 import com.example.CuddleCare.dto.ExpenseDTO;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.service.ExpenseService;
+import com.example.CuddleCare.dto.ParentDTO;
+import com.example.CuddleCare.dto.UserDTO;
+import com.example.CuddleCare.entity.User;
+import com.example.CuddleCare.service.ParentService;
 import com.example.CuddleCare.service.RoleService;
 import com.example.CuddleCare.service.BudgetService;
 
@@ -43,6 +47,7 @@ public class MyRunner implements CommandLineRunner {
 
     @Autowired
     private ExpenseService expenseService;
+    private ParentService parentService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -85,6 +90,21 @@ public class MyRunner implements CommandLineRunner {
             return;
         }
         expenseService.createExpense(expenseDTO2);
+//        assignRoles();
+        // createParentUser();
+    }
+
+    private void createParentUser() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername("Nareash");
+        userDTO.setEmail("nareash200010150@gmail.com");
+        userDTO.setPassword("1234");
+        userDTO.setDob("15/01/2001");
+        userDTO.setContactNumber("0987654321");
+        userDTO.setGender("male");
+        ParentDTO parentDTO = new ParentDTO();
+        parentDTO.setUser(userDTO);
+        parentService.createParent(parentDTO);
     }
     private void createBudget() {
         BudgetDTO budgetDTO = new BudgetDTO();
@@ -109,6 +129,7 @@ public class MyRunner implements CommandLineRunner {
 
 
     private void assignRoles() {
+
         List<User> allUsers = userService.getAllUsers();
         final int[] i = {1};
         allUsers.forEach(user -> {
@@ -119,7 +140,7 @@ public class MyRunner implements CommandLineRunner {
             else if(i[0] % 5 == 3)
                 userService.AssignRoleToUser(user.getEmail(), "ContentManager");
             else if(i[0] % 5 == 4)
-                userService.AssignRoleToUser(user.getEmail(), "CareGiver");
+                userService.AssignRoleToUser(user.getEmail(), "Caregiver");
             else if(i[0] % 5 == 0) {
                 userService.AssignRoleToUser(user.getEmail(), "GuestUser");
             }
@@ -130,12 +151,19 @@ public class MyRunner implements CommandLineRunner {
 
     private void createUsers() {
         for (int i = 0; i < 10; i++) {
-            userService.createUser("user" + i + "@gmail.com", "1234", "userFN" + i, "userLN" + i, "user" + i, "2015/01/01");
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUsername("user" + i + "@gmail.com");
+            userDTO.setEmail("user" + i + "@gmail.com");
+            userDTO.setPassword("User" + i + "__123");
+            userDTO.setDob("01/01/2000");
+            userDTO.setContactNumber("1234567890");
+            userDTO.setGender("Female");
+            userService.createUser(userDTO);
         }
     }
 
     private void createRoles() {
-        Arrays.asList("Parents",
+        Arrays.asList("Parent",
                 "GuestUser",
                 "Caregiver",
                 "ContentManager",
