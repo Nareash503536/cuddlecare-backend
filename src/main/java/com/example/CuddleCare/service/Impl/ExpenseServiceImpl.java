@@ -70,7 +70,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
                 for(Expense expense : expenses){
                     Date expenseDate = expense.getDate();
-                    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+                    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
                     LocalDate expenselocalDate = LocalDate.parse(expenseDate.toString(),inputFormatter);
 
                     System.out.println("current data of month and year: " + expenselocalDate.getMonthValue()+" "+expenselocalDate.getYear()+" "+monthValue+" "+year);

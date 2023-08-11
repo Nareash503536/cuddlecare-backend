@@ -51,11 +51,11 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // createRoles();
-        // createUsers();
-        // assignRoles();
-        // createExpense();
-        // createBudget();
+//         createRoles();
+//         createUsers();
+//         assignRoles();
+//         createExpense();
+//         createBudget();
     }
 
 
@@ -67,7 +67,7 @@ public class MyRunner implements CommandLineRunner {
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = sdf.parse("2023/07/31");
+            Date date = sdf.parse("2022/07/31");
             expenseDTO.setDate(date);
         }catch (ParseException e){
             e.printStackTrace();
