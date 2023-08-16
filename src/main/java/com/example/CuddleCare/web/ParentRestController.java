@@ -111,8 +111,8 @@ public class ParentRestController {
                 BabyDOB,
                 BabyName
         );
-        babyService.addBabyToParent(savedBaby, savedParent);
-        if(savedParent != null && savedBaby != null){
+         babyService.addBabyToParent(savedBaby, savedParent);
+        if(savedBaby != null && savedParent != null){
             UserException.setResult("Parent and Baby created successfully");
             UserException.setError(false);
         } else {

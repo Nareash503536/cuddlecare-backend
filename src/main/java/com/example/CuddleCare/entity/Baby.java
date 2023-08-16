@@ -52,9 +52,6 @@ public class Baby {
     private Caregiver caregiver;
 
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
-    private Set<Symptom> symptoms = new HashSet<>();
-
-    @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<Sleep> sleepSet = new HashSet<>();
 
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
@@ -78,6 +75,9 @@ public class Baby {
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
 
+    @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
+    private Set<SymptomBaby> symptomBaby = new HashSet<>();
+
     public Baby(String BabyGender, String BabyDOB, String BabyName){
         this.dob = BabyDOB;
         this.babyName = BabyName;
@@ -89,13 +89,13 @@ public class Baby {
         parent.getBabies().add(this);
     }
 	
-	public Long getBabyId() {
-        if (babyID != null) {
-            return babyID;
-        }
-        return null;
-    }
-
-    public void setBabyId(Long babyId) {
-    }
+//	public Long getBabyId() {
+//        if (babyID != null) {
+//            return babyID;
+//        }
+//        return null;
+//    }
+//
+//    public void setBabyId(Long babyId) {
+//    }
 }

@@ -47,17 +47,49 @@ public class MyRunner implements CommandLineRunner {
 
     @Autowired
     private ExpenseService expenseService;
+
+    @Autowired
+    private SymptomService symptomService;
+
+    @Autowired
     private ParentService parentService;
+
+    @Autowired
+    private BabyService babyService;
 
     @Override
     public void run(String... args) throws Exception {
-//         createRoles();
-//         createUsers();
-//         assignRoles();
-//         createExpense();
-//         createBudget();
+        // createRoles();
+        // createUsers();
+        // assignRoles();
+        // createExpense();
+        // createBudget();
+        // createSymptom();
+        // createBaby();
     }
 
+    private void createBaby() {
+        for (int i = 0; i < 5; i++) {
+            babyService.createBaby(
+                    "male",
+                    "01/01/2000",
+                    "Baby" + i);
+        }
+    }
+
+    private void createSymptom() {
+        symptomService.createSymptom("Fever");
+        symptomService.createSymptom("No negative symptoms");
+        symptomService.createSymptom("General Fussiness");
+        symptomService.createSymptom("Cough");
+        symptomService.createSymptom("Vomiting");
+        symptomService.createSymptom("Low energy");
+        symptomService.createSymptom("Runny nose");
+        symptomService.createSymptom("Abnormal breathing");
+        symptomService.createSymptom("Spit-up");
+        symptomService.createSymptom("No appetite");
+        symptomService.createSymptom("Rash");
+    }
 
     private void createExpense() {
         ExpenseDTO expenseDTO = new ExpenseDTO();
@@ -67,7 +99,7 @@ public class MyRunner implements CommandLineRunner {
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = sdf.parse("2022/07/31");
+            Date date = sdf.parse("2023/07/31");
             expenseDTO.setDate(date);
         }catch (ParseException e){
             e.printStackTrace();
