@@ -2,32 +2,15 @@ package com.example.CuddleCare.runner;
 
 import com.example.CuddleCare.dto.BudgetDTO;
 import com.example.CuddleCare.dto.ExpenseDTO;
-import com.example.CuddleCare.entity.User;
-import com.example.CuddleCare.service.ExpenseService;
 import com.example.CuddleCare.dto.ParentDTO;
 import com.example.CuddleCare.dto.UserDTO;
 import com.example.CuddleCare.entity.User;
-import com.example.CuddleCare.service.ParentService;
-import com.example.CuddleCare.service.RoleService;
-import com.example.CuddleCare.service.BudgetService;
-
-
-import com.example.CuddleCare.service.UserService;
+import com.example.CuddleCare.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.example.CuddleCare.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
