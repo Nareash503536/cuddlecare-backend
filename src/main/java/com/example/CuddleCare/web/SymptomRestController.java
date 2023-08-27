@@ -83,7 +83,7 @@ public class SymptomRestController {
         return ResponseEntity.ok(exception);
     }
 
-    @PostMapping("symptom/updateSymptomForBaby")
+    @PutMapping("symptom/updateSymptomForBaby")
     public ResponseEntity<UserException> updateSymptomForBaby(
             @RequestParam("date") String date,
             @RequestParam("time") String time,
@@ -156,4 +156,12 @@ public class SymptomRestController {
     ){
         return symptomService.loadDistinctDatesByBaby(babyID);
     }
+
+    @DeleteMapping("symptom/removeSymptomForBabyByDate")
+    public void removeSymptomForBabyByDate(
+            @RequestParam("symptomBabyID") Long SymptomBabyID
+    ){
+        symptomService.removeSymptomBaby(SymptomBabyID);
+    }
+
 }

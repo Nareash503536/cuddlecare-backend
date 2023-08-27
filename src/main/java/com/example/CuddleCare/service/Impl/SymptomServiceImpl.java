@@ -93,13 +93,13 @@ public class SymptomServiceImpl implements SymptomService{
     @Override
     public List<SymptomBabyDTO> loadSymptomBabyByDate(String date, Long babyID) {
         //get the list and convert into DTO list
-        List<SymptomBabyDTO> symptomBabyDTOList = symptomBabyDao.findAllByBabyAndDate(babyService.loadBabyById(babyID), date).stream().map(symptomBaby -> symptomBabyMapper.FromSymptomBaby(symptomBaby)).toList();
+        List<SymptomBabyDTO> symptomBabyDTOList = symptomBabyDao.findAllByBabyAndDateOrderByDateAsc(babyService.loadBabyById(babyID), date).stream().map(symptomBaby -> symptomBabyMapper.FromSymptomBaby(symptomBaby)).toList();
         return symptomBabyDTOList;
     }
 
     @Override
     public boolean ifSymptomBabyExistsOnDate(String date, Long babyID) {
-        return symptomBabyDao.findAllByBabyAndDate(babyService.loadBabyById(babyID), date).size() > 0;
+        return symptomBabyDao.findAllByBabyAndDateOrderByDateAsc(babyService.loadBabyById(babyID), date).size() > 0;
     }
 
     @Override

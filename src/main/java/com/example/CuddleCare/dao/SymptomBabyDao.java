@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface SymptomBabyDao extends JpaRepository<SymptomBaby, Long> {
-    List<SymptomBaby> findAllByBabyAndDate(Baby baby, String date);
+    List<SymptomBaby> findAllByBabyAndDateOrderByDateAsc(Baby baby, String date);
 
     @Query("SELECT DISTINCT date FROM SymptomBaby WHERE baby.babyID = :babyID")
     List<String> findDistinctDatesByBaby(@Param("babyID") Long babyID);
