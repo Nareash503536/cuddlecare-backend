@@ -1,10 +1,14 @@
 package com.example.CuddleCare.web;
 
+import com.example.CuddleCare.dao.ParentDao;
 import com.example.CuddleCare.dto.BabyDTO;
 import com.example.CuddleCare.dto.ParentDTO;
 import com.example.CuddleCare.dto.UserDTO;
+import com.example.CuddleCare.entity.Baby;
+import com.example.CuddleCare.entity.Parents;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.exceptions.UserException;
+import com.example.CuddleCare.mapper.ParentMapper;
 import com.example.CuddleCare.mapper.UserMapper;
 import com.example.CuddleCare.service.BabyService;
 import com.example.CuddleCare.service.ParentService;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
  @CrossOrigin("*")
 public class ParentRestController {
@@ -24,18 +30,24 @@ public class ParentRestController {
     private UserService userService;
     private RoleService roleService;
     private UserMapper userMapper;
+    private ParentMapper parentMapper;
+    private ParentDao parentDao;
 
     public ParentRestController(
             ParentService parentService,
             BabyService babyService,
             UserService userService,
             RoleService roleService,
-            UserMapper userMapper) {
+            UserMapper userMapper,
+            ParentMapper parentMapper,
+            ParentDao parentDao) {
         this.parentService = parentService;
         this.babyService = babyService;
         this.userService = userService;
         this.roleService = roleService;
         this.userMapper = userMapper;
+        this.parentMapper = parentMapper;
+        this.parentDao = parentDao;
     }
 
 
@@ -120,5 +132,12 @@ public class ParentRestController {
             UserException.setError(true);
         }
         return ResponseEntity.ok(UserException);
+    }
+
+    @PostMapping("/getBabiesByParent")
+    public Set<Baby> getBabiesByParent(@RequestParam(name = "email") String email){
+        ParentDTO parentDto = parentService.loadParentByUser(userService.loadUserByEmail(email));
+        Parents parent = parentDao.findByParentID(parentDto.getParentID());
+        return parent.getBabies();
     }
 }

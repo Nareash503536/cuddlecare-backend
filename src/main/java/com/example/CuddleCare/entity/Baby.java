@@ -1,6 +1,7 @@
 package com.example.CuddleCare.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class Baby {
     @Basic
     @Column(name = "gender")
     private String gender;
+
+    @Basic
+    @Column(name = "baby_picture")
+    private String babyPicture;
 
     @Basic
     @Column(name = "dob")
@@ -72,6 +77,7 @@ public class Baby {
     @OneToMany(mappedBy = "baby")
     private Set<ToDoList> toDoLists = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
 

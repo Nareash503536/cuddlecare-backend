@@ -35,6 +35,24 @@ public class BabyServiceImpl implements BabyService {
     }
 
     @Override
+    public Baby updateBabyByAttribute(Long id, String attribute, String value) {
+        Baby baby = loadBabyById(id);
+        if(attribute.equals("babyname"))
+            baby.setBabyName(value);
+        else if(attribute.equals("dob"))
+            baby.setDob(value);
+        else if(attribute.equals("gender"))
+            baby.setGender(value);
+        return babyDao.save(baby);
+    }
+
+    @Override
+    public Baby updateBaby(Baby baby) {
+        // TODO Auto-generated method stub
+        return babyDao.save(baby);
+    }
+
+    @Override
     public void addBabyToParent(BabyDTO babyDTO, ParentDTO parentDTO) {
         // TODO Auto-generated method stub
         Baby baby = loadBabyById(babyDTO.getBabyID());

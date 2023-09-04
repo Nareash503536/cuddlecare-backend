@@ -23,6 +23,8 @@ public interface UserService {
 
     User updateUser(User user);
 
+    User updateUserByAttribute(String email, String attribute, String value);
+
 }
 
 

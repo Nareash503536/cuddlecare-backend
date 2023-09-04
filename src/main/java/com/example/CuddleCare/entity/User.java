@@ -1,5 +1,6 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -53,7 +54,12 @@ public class User {
     @Column(name = "contact_number")
     private String contactNumber;
 
+    @Basic
+    @Column(name = "profile_picture")
+    private String profilePicture;
+
     //Foreign classes
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
                 joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
@@ -67,6 +73,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Caregiver caregiver;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Parents parent;
 
