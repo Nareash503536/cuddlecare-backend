@@ -75,4 +75,21 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user);
     }
 
+    @Override
+    public User updateUserByAttribute(String email, String attribute, String value) {
+        User user = loadUserByEmail(email);
+        if(attribute.equals("username"))
+            user.setUsername(value);
+        else if(attribute.equals("email"))
+            user.setEmail(value);
+        else if(attribute.equals("dob"))
+            user.setDob(value);
+        else if(attribute.equals("contactNumber"))
+            user.setContactNumber(value);
+        else if(attribute.equals("gender"))
+            user.setGender(value);
+        return userDao.save(user);
+    }
+
+
 }

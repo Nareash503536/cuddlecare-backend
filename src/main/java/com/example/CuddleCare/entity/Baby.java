@@ -1,6 +1,7 @@
 package com.example.CuddleCare.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class Baby {
     @Basic
     @Column(name = "gender")
     private String gender;
+
+    @Basic
+    @Column(name = "baby_picture")
+    private String babyPicture;
 
     @Basic
     @Column(name = "dob")
@@ -52,9 +57,6 @@ public class Baby {
     private Caregiver caregiver;
 
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
-    private Set<Symptom> symptoms = new HashSet<>();
-
-    @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<Sleep> sleepSet = new HashSet<>();
 
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
@@ -75,8 +77,12 @@ public class Baby {
     @OneToMany(mappedBy = "baby")
     private Set<ToDoList> toDoLists = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
+
+    @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
+    private Set<SymptomBaby> symptomBaby = new HashSet<>();
 
     public Baby(String BabyGender, String BabyDOB, String BabyName){
         this.dob = BabyDOB;
@@ -89,13 +95,13 @@ public class Baby {
         parent.getBabies().add(this);
     }
 	
-	public Long getBabyId() {
-        if (babyID != null) {
-            return babyID;
-        }
-        return null;
-    }
-
-    public void setBabyId(Long babyId) {
-    }
+//	public Long getBabyId() {
+//        if (babyID != null) {
+//            return babyID;
+//        }
+//        return null;
+//    }
+//
+//    public void setBabyId(Long babyId) {
+//    }
 }

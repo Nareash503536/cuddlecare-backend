@@ -2,32 +2,15 @@ package com.example.CuddleCare.runner;
 
 import com.example.CuddleCare.dto.BudgetDTO;
 import com.example.CuddleCare.dto.ExpenseDTO;
-import com.example.CuddleCare.entity.User;
-import com.example.CuddleCare.service.ExpenseService;
 import com.example.CuddleCare.dto.ParentDTO;
 import com.example.CuddleCare.dto.UserDTO;
 import com.example.CuddleCare.entity.User;
-import com.example.CuddleCare.service.ParentService;
-import com.example.CuddleCare.service.RoleService;
-import com.example.CuddleCare.service.BudgetService;
-
-
-import com.example.CuddleCare.service.UserService;
+import com.example.CuddleCare.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.example.CuddleCare.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -47,17 +30,50 @@ public class MyRunner implements CommandLineRunner {
 
     @Autowired
     private ExpenseService expenseService;
+
+    @Autowired
+    private SymptomService symptomService;
+
+    @Autowired
     private ParentService parentService;
+
+    @Autowired
+    private BabyService babyService;
 
     @Override
     public void run(String... args) throws Exception {
-//         createRoles();
-//         createUsers();
-//         assignRoles();
-//         createExpense();
-//         createBudget();
+
+        // createRoles();
+        // createUsers();
+        // assignRoles();
+        // createExpense();
+        // createBudget();
+        // createSymptom();
+        // createBaby();
     }
 
+    private void createBaby() {
+        for (int i = 0; i < 5; i++) {
+            babyService.createBaby(
+                    "male",
+                    "01/01/2000",
+                    "Baby" + i);
+        }
+    }
+
+    private void createSymptom() {
+        symptomService.createSymptom("Fever");
+        symptomService.createSymptom("No negative symptoms");
+        symptomService.createSymptom("General Fussiness");
+        symptomService.createSymptom("Cough");
+        symptomService.createSymptom("Vomiting");
+        symptomService.createSymptom("Low energy");
+        symptomService.createSymptom("Runny nose");
+        symptomService.createSymptom("Abnormal breathing");
+        symptomService.createSymptom("Spit-up");
+        symptomService.createSymptom("No appetite");
+        symptomService.createSymptom("Rash");
+    }
 
     private void createExpense() {
         ExpenseDTO expenseDTO = new ExpenseDTO();

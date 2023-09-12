@@ -3,8 +3,6 @@ package com.example.CuddleCare.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -30,15 +28,15 @@ public class Reminder {
 
     @Basic
     @Column(name = "reminder_type")
-    private reminderTypes reminderType;
+    private String reminderType;
 
     @Basic
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Basic
     @Column(name = "time")
-    private Time time;
+    private String time;
 
     @Basic
     @Column(name = "description")

@@ -1,5 +1,6 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Parents {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "parent_baby",
             joinColumns = {@JoinColumn(name = "parent_id", referencedColumnName = "parent_id")},

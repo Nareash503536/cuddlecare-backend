@@ -94,4 +94,9 @@ public class CaregiverRestController {
         return ResponseEntity.ok(UserException);
     }
 
+//    @PostMapping("/getCaregiverBabySet")
+//    public List<BabyDTO> getCaregiverBabySet(@RequestParam("email") String email) {
+//        return caregiverService.loadBabiesByCaregiver(userService.loadUserByEmail(email));
+//    }
+
 }
