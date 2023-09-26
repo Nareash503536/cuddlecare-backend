@@ -1,5 +1,6 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -70,6 +71,7 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Admin admin;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Caregiver caregiver;
 

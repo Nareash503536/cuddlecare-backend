@@ -2,17 +2,19 @@ package com.example.CuddleCare.web;
 
 import com.example.CuddleCare.dto.CaregiverDTO;
 import com.example.CuddleCare.dto.UserDTO;
+import com.example.CuddleCare.entity.Baby;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.exceptions.UserException;
 import com.example.CuddleCare.mapper.UserMapper;
 import com.example.CuddleCare.service.CaregiverService;
 import com.example.CuddleCare.service.RoleService;
+import com.example.CuddleCare.service.BabyService;
 import com.example.CuddleCare.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin("*")
@@ -27,7 +29,8 @@ public class CaregiverRestController {
             CaregiverService caregiverService,
             UserService userService,
             RoleService roleService,
-            UserMapper userMapper) {
+            UserMapper userMapper
+            ) {
         this.caregiverService = caregiverService;
         this.userService = userService;
         this.roleService = roleService;
@@ -48,7 +51,7 @@ public class CaregiverRestController {
         user.setDob(CaregiverDOB);
         user.setContactNumber(CaregiverPhoneNumber);
         user.setGender(CaregiverGender);
-        user.setRelationship("Caregiver");
+        user.setRelationship("caregiver");
         CaregiverDTO newCaregiver = new CaregiverDTO();
         newCaregiver.setUser(user);
         return newCaregiver;
@@ -94,9 +97,21 @@ public class CaregiverRestController {
         return ResponseEntity.ok(UserException);
     }
 
-//    @PostMapping("/getCaregiverBabySet")
-//    public List<BabyDTO> getCaregiverBabySet(@RequestParam("email") String email) {
-//        return caregiverService.loadBabiesByCaregiver(userService.loadUserByEmail(email));
-//    }
+
+@PostMapping("/getCaregiverBabySet")
+public Set<Baby> getBabiesByCaregiver(@RequestParam(name = "email") String email) {
+    return caregiverService.loadBabiesByCaregiver(email);
+}
+
+@GetMapping("/getCaregiverList")
+public ResponseEntity<List<CaregiverDTO>> getCaregiverList(){
+        return ResponseEntity.ok(caregiverService.getCaregiverList());
+}
+
+@PostMapping("/getRequestedBabies")
+public ResponseEntity<Set<Baby>> getRequestedBabies(
+    @RequestParam(name = "email") String email) {
+    return ResponseEntity.ok(caregiverService.getRequestedBabyList(email));
+}
 
 }

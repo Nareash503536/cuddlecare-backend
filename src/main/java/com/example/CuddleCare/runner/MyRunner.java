@@ -40,6 +40,9 @@ public class MyRunner implements CommandLineRunner {
     @Autowired
     private BabyService babyService;
 
+    @Autowired
+    private CaregiverService caregiverService;
+
     @Override
     public void run(String... args) throws Exception {
         // createRoles();
@@ -49,6 +52,12 @@ public class MyRunner implements CommandLineRunner {
         // createBudget();
         // createSymptom();
         // createBaby();
+//        Baby baby = babyService.loadBabyById(20L);
+//        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
+//        baby.setCaregiver(caregiver);
+//        caregiver.getBabies().add(baby);
+//        caregiverService.updateCaregiver(caregiver);
+//        babyService.updateBaby(baby);
     }
 
     private void createBaby() {
@@ -119,7 +128,7 @@ public class MyRunner implements CommandLineRunner {
         userDTO.setGender("male");
         ParentDTO parentDTO = new ParentDTO();
         parentDTO.setUser(userDTO);
-        parentService.createParent(parentDTO);
+        parentService.createParentDTO(parentDTO);
     }
     private void createBudget() {
         BudgetDTO budgetDTO = new BudgetDTO();

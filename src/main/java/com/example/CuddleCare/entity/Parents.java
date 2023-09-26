@@ -43,7 +43,7 @@ public class Parents {
     private Set<Comment> comments = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "parent_baby",
             joinColumns = {@JoinColumn(name = "parent_id", referencedColumnName = "parent_id")},
             inverseJoinColumns = {@JoinColumn(name = "baby_id", referencedColumnName = "baby_id")})

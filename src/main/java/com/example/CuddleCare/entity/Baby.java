@@ -1,6 +1,7 @@
 package com.example.CuddleCare.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -52,9 +53,18 @@ public class Baby {
         return Objects.hash(babyID, babyName);
     }
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "caregiver_id", referencedColumnName = "caregiver_id")
     private Caregiver caregiver;
+
+    @JsonBackReference
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinTable(name = "baby_request_caregiver",
+        joinColumns = {@JoinColumn(name = "baby_ID", referencedColumnName = "baby_ID")},
+        inverseJoinColumns = {@JoinColumn(name = "caregiver_id", referencedColumnName = "caregiver_id")}
+    )
+    private Set<Caregiver> requestCaregiverSet = new HashSet<>();
 
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<Sleep> sleepSet = new HashSet<>();
@@ -93,6 +103,27 @@ public class Baby {
     public void addParentToBaby(Parents parent) {
         this.parents.add(parent);
         parent.getBabies().add(this);
+    }
+
+    public void addCaregiverRequest(Caregiver caregiver){
+        this.requestCaregiverSet.add(caregiver);
+        caregiver.getRequestedBabies().add(this);
+    }
+
+    public void removeCaregiverRequest(Caregiver caregiver){
+        this.requestCaregiverSet.remove(caregiver);
+        caregiver.getRequestedBabies().remove(this);
+    }
+
+    public void removeCaregiver(Caregiver caregiver){
+        setCaregiver(null);
+        caregiver.getBabies().remove(this);
+    }
+
+    public void acceptRequest(Caregiver caregiver){
+        removeCaregiverRequest(caregiver);
+        setCaregiver(caregiver);
+        caregiver.getBabies().add(this);
     }
 	
 //	public Long getBabyId() {

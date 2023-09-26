@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BabyDao extends JpaRepository<Baby, Long> {
-
         Baby findByBabyName(String BabyName);
-
         Baby findByBabyID(Long babyId);
 }
 

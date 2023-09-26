@@ -13,5 +13,12 @@ public class BabyDTO {
     private String babyName;
     private String dob;
     private String gender;
-    private Set<ParentDTO> parents = new HashSet<>(); 
+    private Set<ParentDTO> parents = new HashSet<>();
+
+    public void setParents(Set<ParentDTO> parents){
+        this.parents = parents;
+    }
+    public Set<ParentDTO> getParents(){
+        return this.parents;
+    }
 }

@@ -17,6 +17,7 @@ public class UserDTO{
     private String contactNumber;
     private String gender;
     private String relationship;
+    private String profilePicture;
     // private String authenticated;
     // private Set<Role> roles = new HashSet<>();
     // private Admin admin;
