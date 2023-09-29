@@ -12,5 +12,7 @@ public interface SleepDao extends JpaRepository<Sleep, Long> {
 
     List<Sleep> findBySleepStartTimeBetweenOrderBySleepStartTimeDesc(Instant startOfToday, Instant startOfTomorrow);
 
+    Sleep findTopBySleepStartTimeBetweenOrderBySleepStartTimeDesc(Instant startOfToday, Instant startOfTomorrow);
+
     List<Sleep> findBySleepStartTimeBetween(Instant startOfToday, Instant startOfTomorrow);
 }

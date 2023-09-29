@@ -8,6 +8,7 @@ import com.example.CuddleCare.service.SleepService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class SleepServiceImpl implements SleepService {
 
     private final SleepDao sleepDao;
@@ -38,7 +40,7 @@ public class SleepServiceImpl implements SleepService {
     public SleepDTO getLastSleepByDate(LocalDate currentDate) {
         Instant startOfToday = currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
         Instant startOfTomorrow = currentDate.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant();
-        Sleep lastSleep = sleepDao.findTopBySleepStartTimeLessThanEqualOrderBySleepStartTimeDesc(startOfTomorrow);
+        Sleep lastSleep = sleepDao.findTopBySleepStartTimeBetweenOrderBySleepStartTimeDesc(startOfToday, startOfTomorrow);
 
         if (lastSleep == null) {
             return null;
