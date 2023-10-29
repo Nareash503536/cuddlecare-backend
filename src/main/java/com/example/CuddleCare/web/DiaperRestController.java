@@ -1,6 +1,7 @@
 package com.example.CuddleCare.web;
 
 import com.example.CuddleCare.dto.DiaperDTO;
+import com.example.CuddleCare.dto.DiaperViewDTO;
 import com.example.CuddleCare.service.DiaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,17 @@ public class DiaperRestController {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error while getting last diaper change");
+        }
+    }
+
+    @GetMapping("/weeklyDiaperCount")
+    public ResponseEntity<List<DiaperViewDTO>> getWeeklyDiaperCount(){
+        try {
+            List<DiaperViewDTO> weeklyDiaperCount = diaperService.getWeeklyDiaperCount();
+            return ResponseEntity.ok(weeklyDiaperCount);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while getting weekly diaper count");
         }
     }
 }
