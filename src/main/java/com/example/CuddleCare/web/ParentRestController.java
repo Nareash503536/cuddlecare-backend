@@ -96,7 +96,7 @@ public class ParentRestController {
             @RequestParam("ParentDOB") String ParentDOB,
             @RequestParam("ParentEmail") String ParentEmail,
             @RequestParam("ParentPassword") String ParentPassword) {
-         User user = userService.loadUserByEmail(ParentEmail);
+        User user = userService.loadUserByEmail(ParentEmail);
         UserException UserException = new UserException();
         ParentDTO savedParent;
         if (user != null && user.getRoles().contains(roleService.getRoleByName("Parent"))){

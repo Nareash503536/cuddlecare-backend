@@ -94,6 +94,9 @@ public class Baby {
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<SymptomBaby> symptomBaby = new HashSet<>();
 
+    @ManyToMany(mappedBy = "babies")
+    private Set<Vaccination> vaccinations = new HashSet<>();
+
     public Baby(String BabyGender, String BabyDOB, String BabyName){
         this.dob = BabyDOB;
         this.babyName = BabyName;
