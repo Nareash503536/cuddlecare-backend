@@ -1,6 +1,7 @@
 package com.example.CuddleCare.web;
 
 import com.example.CuddleCare.dto.SleepDTO;
+import com.example.CuddleCare.dto.SleepViewDTO;
 import com.example.CuddleCare.service.SleepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,6 +68,17 @@ public class SleepRestController {
             return ResponseEntity.badRequest().body(null);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping("/weeklySleepData")
+    public ResponseEntity<List<SleepViewDTO>> getWeeklySleepData() {
+        try {
+            List<SleepViewDTO> weeklySleepData = sleepService.getWeeklySleepData();
+            return ResponseEntity.ok(weeklySleepData);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error while getting weekly sleep data");
         }
     }
 }
