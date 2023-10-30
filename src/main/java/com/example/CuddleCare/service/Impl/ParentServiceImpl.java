@@ -31,7 +31,7 @@ public class ParentServiceImpl implements ParentService {
         this.parentDao = parentDao;
     }
     @Override
-    public ParentDTO createParent(ParentDTO parentDTO) {
+    public ParentDTO createParentDTO(ParentDTO parentDTO) {
         User user = userService.createUser(parentDTO.getUser());
         userService.AssignRoleToUser(user.getEmail(), "Parent");
         Parents parent = parentMapper.FromParentDto(parentDTO);
@@ -39,8 +39,14 @@ public class ParentServiceImpl implements ParentService {
         Parents savedParent = parentDao.save(parent);
         return parentMapper.FromParent(savedParent);
     }
+
     @Override
-    public ParentDTO loadParentByUser(User user) {
+    public Parents loadParentByUser(User user) {
+        return parentDao.findByUser(user);
+    }
+
+    @Override
+    public ParentDTO loadParentDTOByUser(User user) {
         return parentMapper.FromParent(parentDao.findByUser(user));
     }
     @Override

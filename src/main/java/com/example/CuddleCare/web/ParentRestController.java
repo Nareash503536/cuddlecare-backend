@@ -96,7 +96,7 @@ public class ParentRestController {
             @RequestParam("ParentDOB") String ParentDOB,
             @RequestParam("ParentEmail") String ParentEmail,
             @RequestParam("ParentPassword") String ParentPassword) {
-         User user = userService.loadUserByEmail(ParentEmail);
+        User user = userService.loadUserByEmail(ParentEmail);
         UserException UserException = new UserException();
         ParentDTO savedParent;
         if (user != null && user.getRoles().contains(roleService.getRoleByName("Parent"))){
@@ -116,7 +116,7 @@ public class ParentRestController {
                     ParentDOB,
                     ParentPhoneNumber,
                     BabyRelationship);
-            savedParent = parentService.createParent(parentDto);
+            savedParent = parentService.createParentDTO(parentDto);
         }
         BabyDTO savedBaby = babyService.createBaby(
                 BabyGender,
@@ -136,8 +136,9 @@ public class ParentRestController {
 
     @PostMapping("/getBabiesByParent")
     public Set<Baby> getBabiesByParent(@RequestParam(name = "email") String email){
-        ParentDTO parentDto = parentService.loadParentByUser(userService.loadUserByEmail(email));
-        Parents parent = parentDao.findByParentID(parentDto.getParentID());
+        User user = userService.loadUserByEmail(email);
+        Parents parent = parentService.loadParentByUser(user);
         return parent.getBabies();
+
     }
 }

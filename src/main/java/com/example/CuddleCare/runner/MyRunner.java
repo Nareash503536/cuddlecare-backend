@@ -1,9 +1,6 @@
 package com.example.CuddleCare.runner;
 
-import com.example.CuddleCare.dto.BudgetDTO;
-import com.example.CuddleCare.dto.ExpenseDTO;
-import com.example.CuddleCare.dto.ParentDTO;
-import com.example.CuddleCare.dto.UserDTO;
+import com.example.CuddleCare.dto.*;
 import com.example.CuddleCare.entity.User;
 import com.example.CuddleCare.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +37,12 @@ public class MyRunner implements CommandLineRunner {
     @Autowired
     private BabyService babyService;
 
+    @Autowired
+    private VaccinationService vaccinationService;
+
+    @Autowired
+    private CaregiverService caregiverService;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -50,6 +53,107 @@ public class MyRunner implements CommandLineRunner {
         // createBudget();
         // createSymptom();
         // createBaby();
+        createVaccination();
+//        Baby baby = babyService.loadBabyById(20L);
+//        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
+//        baby.setCaregiver(caregiver);
+//        caregiver.getBabies().add(baby);
+//        caregiverService.updateCaregiver(caregiver);
+//        babyService.updateBaby(baby);
+    }
+
+    public void createVaccination(){
+        String[] names = new String[]{
+                "BCG - Dose 1",
+                "DTwP - Dose 1",
+                "Hib - Dose 1",
+                "HepB - Dose 3",
+                "OPV - Dose 1",
+                "DTwP - Dose 2",
+                "Hib - Dose 2",
+                "HepB - Dose 1",
+                "OPV - Dose 2",
+                "DTwP - Dose 3",
+                "Hib - Dose 3",
+                "HepB - Dose 2",
+                "OPV - Dose 3",
+                "Vitamin A - Dose 1",
+                "JE - Dose 1",
+                "MMR - Dose 1",
+                "Vitamin A - Dose 2",
+                "OPV - Dose 4",
+                "Vitamin A - Dose 3",
+                "DTwP - Dose 4",
+                "Vitamin A - Dose 4",
+                "Vitamin A - Dose 5",
+                "MMR - Dose 2",
+                "Vitamin A - Dose 6",
+                "OPV - Dose 5",
+                "DT - Dose 1"
+        };
+        String[] categories = new String[]{
+                "",
+                "Diphtheria, Tetanus Vaccine",
+                "Haeomophilus Influenzae Type B",
+                "Hepatitis B",
+                "Oral Polio Vaccine",
+                "Diphtheria, Tetanus Vaccine",
+                "Haeomophilus Influenzae Type B",
+                "Hepatitis B",
+                "Oral Polio Vaccine",
+                "Diphtheria, Tetanus Vaccine",
+                "Haeomophilus Influenzae Type B",
+                "Hepatitis B",
+                "Oral Polio Vaccine",
+                "Vitamin A supplementation",
+                "",
+                "Measles, Mumps, Rubella Vaccine",
+                "Vitamin A supplementation",
+                "Oral Polio Vaccine",
+                "Vitamin A supplementation",
+                "Diphtheria, Tetanus Vaccine",
+                "Vitamin A supplementation",
+                "Vitamin A supplementation",
+                "Measles, Mumps, Rubella Vaccine",
+                "Vitamin A supplementation",
+                "Oral Polio Vaccine",
+                "Tenanus and Diphtheria toxoid",
+        };
+        int[] months = new int[]{
+                0,
+                2,
+                2,
+                2,
+                2,
+                4,
+                4,
+                4,
+                4,
+                6,
+                6,
+                6,
+                6,
+                6,
+                9,
+                12,
+                12,
+                18,
+                18,
+                18,
+                24,
+                30,
+                36,
+                36,
+                60,
+                60
+        };
+        for (int i = 0; i < names.length; i++) {
+            VaccinationDTO vaccinationDTO = new VaccinationDTO();
+            vaccinationDTO.setName(names[i]);
+            vaccinationDTO.setCategory(categories[i]);
+            vaccinationDTO.setMonths(months[i]);
+            vaccinationService.createVaccination(vaccinationDTO);
+        }
     }
 
     private void createBaby() {
@@ -120,7 +224,7 @@ public class MyRunner implements CommandLineRunner {
         userDTO.setGender("male");
         ParentDTO parentDTO = new ParentDTO();
         parentDTO.setUser(userDTO);
-        parentService.createParent(parentDTO);
+        parentService.createParentDTO(parentDTO);
     }
     private void createBudget() {
         BudgetDTO budgetDTO = new BudgetDTO();

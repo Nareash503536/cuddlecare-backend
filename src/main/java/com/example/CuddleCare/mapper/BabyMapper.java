@@ -1,19 +1,23 @@
 package com.example.CuddleCare.mapper;
 
-import java.util.stream.Collectors;
-
+import com.example.CuddleCare.dto.BabyDTO;
+import com.example.CuddleCare.entity.Baby;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.example.CuddleCare.dto.BabyDTO;
-import com.example.CuddleCare.entity.Baby;
+import java.util.stream.Collectors;
 
 @Service
 public class BabyMapper {
 
     private ParentMapper parentMapper;
+//    private CaregiverMapper caregiverMapper;
 
-    BabyMapper(ParentMapper parentMapper) {
+    BabyMapper(
+            ParentMapper parentMapper
+//            CaregiverMapper caregiverMapper
+    ) {
+//        this.caregiverMapper = caregiverMapper;
         this.parentMapper = parentMapper;
     }
 
@@ -25,6 +29,11 @@ public class BabyMapper {
                 .map(parent -> parentMapper.FromParent(parent))
                 .collect(Collectors.toSet())
         );
+//        babyDto.setRequestCaregiverSet(
+//                baby.getRequestCaregiverSet().stream()
+//                        .map(caregiver -> caregiverMapper.FromCaregiver(caregiver))
+//                        .collect(Collectors.toSet())
+//        );
         return babyDto;
     }
 
@@ -36,6 +45,11 @@ public class BabyMapper {
                 .map(parentDto -> parentMapper.FromParentDto(parentDto))
                 .collect(Collectors.toSet())
         );
+//        baby.setRequestCaregiverSet(
+//                babyDto.getRequestCaregiverSet().stream()
+//                        .map(caregiverDto -> caregiverMapper.FromCaregiverDto(caregiverDto))
+//                        .collect(Collectors.toSet())
+//        );
         return baby;
     }
 }
