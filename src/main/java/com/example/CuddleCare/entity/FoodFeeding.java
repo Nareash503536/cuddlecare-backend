@@ -1,9 +1,14 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -11,44 +16,42 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "food_feeding")
+@Table(name = "foodfeeding")
 public class FoodFeeding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "breast_feeding_ID", nullable = false)
+    @Column(name = "food_id", nullable = false)
     private Long foodFeedingID;
 
     @Basic
-    @Column(name = "food_type")
-    private String foodType;
+    @Column(name = "mixture_name")
+    private String mixtureName;
 
     @Basic
-    @Column(name = "food_variety")
-    private String foodVariety;
+    @Column(name = "feedingdate")
+    private Date feedingDate;
 
     @Basic
-    @Column(name = "portion__size")
-    private String portionSize;
+    @Column(name = "feedingtime")
+    private String feedingTime;
+
+    @Basic
+    @Column(name = "reaction")
+    private String reaction;
+
 
     @Basic
     @Column(name = "additional_notes")
     private String additionalNotes;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feeding_id", referencedColumnName = "feeding_id")
-    private Feeding feeding;
+    @OneToMany(mappedBy = "foodFeeding")
+    @JsonManagedReference
+    private Set<FoodIngredient> foodIngredients = new HashSet<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FoodFeeding that = (FoodFeeding) o;
-        return Objects.equals(foodFeedingID, that.foodFeedingID) && Objects.equals(foodType, that.foodType) && Objects.equals(foodVariety, that.foodVariety) && Objects.equals(portionSize, that.portionSize) && Objects.equals(additionalNotes, that.additionalNotes);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(foodFeedingID, foodType, foodVariety, portionSize, additionalNotes);
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "baby_id", referencedColumnName = "baby_id")
+    @JsonBackReference
+    private Baby baby;
 }

@@ -22,7 +22,8 @@ public class Feeding {
 
     private enum FeedingTypes{
         BreastFeeding,
-        Normal
+        BottleFeeding,
+        FoodFeeding
     }
 
     @Basic
