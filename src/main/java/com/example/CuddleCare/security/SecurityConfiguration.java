@@ -37,6 +37,8 @@ public class SecurityConfiguration {
         http.authorizeRequests().antMatchers("/refresh-token/**").permitAll();
 
         http.authorizeRequests().antMatchers("/register/**").permitAll();
+//        http.authorizeRequests().antMatchers("/getBabiesByParent/**").permitAll();
+//         http.authorizeRequests().antMatchers("/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtHelper));
         http.addFilterBefore(new JWTAuthorizationFilter(jwtHelper), UsernamePasswordAuthenticationFilter.class);

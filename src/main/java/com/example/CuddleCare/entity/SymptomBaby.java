@@ -1,5 +1,6 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,10 +30,12 @@ public class SymptomBaby {
     @Column(name = "additional_notes")
     private String additionalNotes;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "symptom_id", referencedColumnName = "symptom_id")
     private Symptom symptom;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "baby_id", referencedColumnName = "baby_id")
     private Baby baby;

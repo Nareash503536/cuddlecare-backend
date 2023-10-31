@@ -102,6 +102,7 @@ public class Baby {
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<SymptomBaby> symptomBaby = new HashSet<>();
 

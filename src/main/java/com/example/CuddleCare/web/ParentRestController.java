@@ -139,6 +139,5 @@ public class ParentRestController {
         User user = userService.loadUserByEmail(email);
         Parents parent = parentService.loadParentByUser(user);
         return parent.getBabies();
-
     }
 }
