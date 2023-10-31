@@ -37,13 +37,6 @@ public class SecurityConfiguration {
         http.authorizeRequests().antMatchers("/refresh-token/**").permitAll();
 
         http.authorizeRequests().antMatchers("/register/**").permitAll();
-         http.authorizeRequests().antMatchers("/vaccination/getAll/**").permitAll();
-
-        http.authorizeRequests().antMatchers("/ingredient/**").permitAll();
-        http.authorizeRequests().antMatchers("/foodFeeding/**").permitAll();
-        http.authorizeRequests().antMatchers("/foodingredient/**").permitAll();
-        // http.authorizeRequests().antMatchers("/acceptBabyRequest/**").permitAll();
-
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtHelper));
         http.addFilterBefore(new JWTAuthorizationFilter(jwtHelper), UsernamePasswordAuthenticationFilter.class);

@@ -52,11 +52,7 @@ public class MyRunner implements CommandLineRunner {
         // createBudget();
         // createSymptom();
         // createBaby();
-
 //        createVaccination();
-
-//        createParentUser();
-
 //        Baby baby = babyService.loadBabyById(20L);
 //        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
 //        baby.setCaregiver(caregiver);
@@ -95,7 +91,7 @@ public class MyRunner implements CommandLineRunner {
                 "DT - Dose 1"
         };
         String[] categories = new String[]{
-                "",
+                "BCG",
                 "Diphtheria, Tetanus Vaccine",
                 "Haeomophilus Influenzae Type B",
                 "Hepatitis B",
@@ -109,7 +105,7 @@ public class MyRunner implements CommandLineRunner {
                 "Hepatitis B",
                 "Oral Polio Vaccine",
                 "Vitamin A supplementation",
-                "",
+                "JE",
                 "Measles, Mumps, Rubella Vaccine",
                 "Vitamin A supplementation",
                 "Oral Polio Vaccine",
