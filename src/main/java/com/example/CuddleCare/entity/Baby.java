@@ -3,6 +3,7 @@ package com.example.CuddleCare.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -91,6 +92,7 @@ public class Baby {
     @ManyToMany(mappedBy = "babies")
     private Set<Parents> parents = new HashSet<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "baby", cascade = CascadeType.ALL)
     private Set<SymptomBaby> symptomBaby = new HashSet<>();
 

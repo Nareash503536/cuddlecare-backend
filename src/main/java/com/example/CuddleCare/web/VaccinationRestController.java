@@ -25,4 +25,9 @@ public class VaccinationRestController {
         return vaccinationService.getVaccinationByBaby(babyID);
     }
 
+    @GetMapping("/upcomingVaccines")
+    public Set<VaccinationDTO> getUpcomingVaccines(@RequestParam(name = "babyID") Long babyID) {
+        return vaccinationService.getUpcomingVaccines(babyID);
+    }
+
 }

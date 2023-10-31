@@ -1,5 +1,6 @@
 package com.example.CuddleCare.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Symptom {
     @Column(name = "name")
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "symptom" ,cascade = CascadeType.ALL)
     private Set<SymptomBaby> symptomBaby = new HashSet<>();
 
