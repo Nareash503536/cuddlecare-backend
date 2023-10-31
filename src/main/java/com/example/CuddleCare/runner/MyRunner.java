@@ -52,11 +52,11 @@ public class MyRunner implements CommandLineRunner {
         // createBudget();
         // createSymptom();
         // createBaby();
-<<<<<<< Updated upstream
-        createVaccination();
-=======
+
+//        createVaccination();
+
 //        createParentUser();
->>>>>>> Stashed changes
+
 //        Baby baby = babyService.loadBabyById(20L);
 //        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
 //        baby.setCaregiver(caregiver);

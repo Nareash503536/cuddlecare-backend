@@ -46,7 +46,7 @@ public class FoodFeeding {
     private String additionalNotes;
 
     @OneToMany(mappedBy = "foodFeeding")
-    @JsonManagedReference
+
     private Set<FoodIngredient> foodIngredients = new HashSet<>();
 
 
