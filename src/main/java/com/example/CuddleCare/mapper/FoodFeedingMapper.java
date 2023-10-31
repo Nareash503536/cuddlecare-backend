@@ -10,6 +10,7 @@ public class FoodFeedingMapper {
 
     public FoodFeeding FromFoodfeedingDTO(FoodfeedingDTO foodfeedingDTO) {
         FoodFeeding foodFeeding = new FoodFeeding();
+        foodFeeding.setFoodFeedingID(foodfeedingDTO.getFoodFeedingID());
         foodFeeding.setFeedingTime(foodfeedingDTO.getFeedingTime());
         foodFeeding.setFeedingDate(foodfeedingDTO.getFeedingDate());
         foodFeeding.setAdditionalNotes(foodfeedingDTO.getAdditionalNotes());
@@ -23,7 +24,7 @@ public class FoodFeedingMapper {
 
     public FoodfeedingDTO FromFoodFeeding(FoodFeeding foodFeeding) {
         FoodfeedingDTO foodfeedingDto = new FoodfeedingDTO();
-
+        foodfeedingDto.setFoodFeedingID(foodFeeding.getFoodFeedingID());
         foodfeedingDto.setFeedingTime(foodFeeding.getFeedingTime());
         foodfeedingDto.setFeedingDate(foodFeeding.getFeedingDate());
         foodfeedingDto.setAdditionalNotes(foodFeeding.getAdditionalNotes());

@@ -20,7 +20,7 @@ import java.util.Set;
 public class FoodFeeding {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_id", nullable = false)
     private Long foodFeedingID;
 
