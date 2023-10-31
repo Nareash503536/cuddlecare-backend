@@ -13,7 +13,7 @@ public class IngredientMapper {
         ingredient.setCategory(ingredientsDto.getCategory());
         ingredient.setName(ingredientsDto.getName());
         ingredient.setImage(ingredientsDto.getImage());
-//        ingredient.setIngredientID(ingredientsDto.getIngredientID());
+        ingredient.setIngredientID(ingredientsDto.getIngredientID());
 
         return ingredient;
     }
@@ -24,7 +24,7 @@ public class IngredientMapper {
         ingredientDto.setCategory(ingredient.getCategory());
         ingredientDto.setImage(ingredient.getImage());
         ingredientDto.setName(ingredient.getName());
-//        ingredientDto.setIngredientID(ingredient.getIngredientID());
+        ingredientDto.setIngredientID(ingredient.getIngredientID());
         return ingredientDto;
     }
 }
