@@ -8,5 +8,6 @@ import java.util.Set;
 public interface VaccinationService {
     Vaccination createVaccination(VaccinationDTO vaccinationDTO);
     Set<VaccinationDTO> getAllVaccinations();
-
+    Set<VaccinationDTO> getVaccinationByBaby(Long babyID);
+    Set<VaccinationDTO> getUpcomingVaccines(Long BabyID);
 }
