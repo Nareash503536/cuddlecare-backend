@@ -53,7 +53,8 @@ public class MyRunner implements CommandLineRunner {
         // createBudget();
         // createSymptom();
         // createBaby();
-        createVaccination();
+//        createParentUser();
+//        createVaccination();
 //        Baby baby = babyService.loadBabyById(20L);
 //        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
 //        baby.setCaregiver(caregiver);
@@ -218,7 +219,7 @@ public class MyRunner implements CommandLineRunner {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername("Nareash");
         userDTO.setEmail("nareash200010150@gmail.com");
-        userDTO.setPassword("1234");
+        userDTO.setPassword("Nareash__1234");
         userDTO.setDob("15/01/2001");
         userDTO.setContactNumber("0987654321");
         userDTO.setGender("male");
