@@ -45,16 +45,18 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        // createRoles();
-        // createUsers();
+//         createRoles();
+//         createUsers();
         // assignRoles();
         // createExpense();
         // createBudget();
         // createSymptom();
         // createBaby();
-//        createParentUser();
+
 //        createVaccination();
+
+//        createParentUser();
+
 //        Baby baby = babyService.loadBabyById(20L);
 //        Caregiver caregiver = caregiverService.loadCaregiverById(1L);
 //        baby.setCaregiver(caregiver);
@@ -218,8 +220,8 @@ public class MyRunner implements CommandLineRunner {
     private void createParentUser() {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername("Nareash");
-        userDTO.setEmail("nareash200010150@gmail.com");
-        userDTO.setPassword("Nareash__1234");
+        userDTO.setEmail("user1@gmail.com");
+        userDTO.setPassword("User__123");
         userDTO.setDob("15/01/2001");
         userDTO.setContactNumber("0987654321");
         userDTO.setGender("male");

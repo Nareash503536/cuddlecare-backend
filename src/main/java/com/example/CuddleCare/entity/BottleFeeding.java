@@ -1,10 +1,12 @@
 package com.example.CuddleCare.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,8 +16,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "breastfeeding")
-public class BreastFeeding {
+@Table(name = "bottlefeeding")
+public class BottleFeeding {
 
 //    private enum Side{
 //        Left,
@@ -25,32 +27,26 @@ public class BreastFeeding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "breast_feeding_ID", nullable = false)
-    private Long breastFeedingID;
-
+    @Column(name = "bottle_feedingID", nullable = false)
+    private Long bottleFeedingID;
 
 
     @Basic
-    @Column(name = "feeding_duration")
-    private String feedingDuration;
-
+    @Column(name = "feeding_time")
+    private String feedingTime;
     @Basic
-    @Column(name = "feeding_day")
+    @Column(name = "feeding_date")
     private Date feedingDate;
     @Basic
-    @Column(name = "Start_time")
-    private String starttime;
+    @Column(name = "feedingtype")
+    private String feedingType;
     @Basic
-    @Column(name = "end_time")
-    private String endtime;
-    @Basic
-    @Column(name = "feeding_side")
-    private String side;
-
+    @Column(name = "quantity")
+    private String quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "baby_id", referencedColumnName = "baby_id")
-    @JsonManagedReference
+    @JsonBackReference
     private Baby baby;
 
 }
