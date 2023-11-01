@@ -5,13 +5,16 @@ package com.example.CuddleCare.service.Impl;
 
 import com.example.CuddleCare.dao.FoodFeedingDao;
 import com.example.CuddleCare.dto.FoodfeedingDTO;
+import com.example.CuddleCare.entity.BottleFeeding;
 import com.example.CuddleCare.entity.FoodFeeding;
 import com.example.CuddleCare.mapper.FoodFeedingMapper;
 import com.example.CuddleCare.service.FoodFeedingService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -39,7 +42,11 @@ public class FoodFeedingServiceImpl implements FoodFeedingService {
         return foodFeedingDao.findAll();
     }
 
-
+    @Override
+    public List<Map<String, Object>> getlastthreeFoodFeeding() {
+        LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+        return foodFeedingDao.AllFeedingsByDate(threeDaysAgo);
+    }
 }
 
 

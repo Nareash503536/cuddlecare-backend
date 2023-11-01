@@ -11,6 +11,7 @@ public interface BFeedService {
     BreastFeedingDTO createBfeeding(BreastFeedingDTO breastFeedingDTO);
 
     List<BreastFeeding> getAllBFeeding();
+  List<BreastFeeding> getlastthreeBFeeding();
 
 
 

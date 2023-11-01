@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,12 @@ public class BFeedServiceImpl implements BFeedService {
     @Override
     public List<BreastFeeding> getAllBFeeding() {
         return breastFeedingDao.findAll();
+    }
+
+    @Override
+    public List<BreastFeeding> getlastthreeBFeeding() {
+        LocalDate threeDaysAgo = LocalDate.now().minusDays(3);
+        return breastFeedingDao.AllFeedingsByDate(threeDaysAgo);
     }
 
 

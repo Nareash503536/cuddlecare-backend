@@ -37,6 +37,12 @@ public class BreastFeedRestController {
         return new ResponseEntity<>(breastFeedings, HttpStatus.OK);
     }
 
+    @GetMapping("/BreastFeeding/allDate")
+    public ResponseEntity<List<BreastFeeding>> getfeedingsByDate(){
+        List<BreastFeeding> breastFeedings = bFeedService.getlastthreeBFeeding();
+        return new ResponseEntity<>(breastFeedings, HttpStatus.OK);
+    }
+
 
 
 

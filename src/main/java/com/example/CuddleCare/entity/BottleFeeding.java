@@ -30,7 +30,6 @@ public class BottleFeeding {
     @Column(name = "bottle_feedingID", nullable = false)
     private Long bottleFeedingID;
 
-
     @Basic
     @Column(name = "feeding_time")
     private String feedingTime;

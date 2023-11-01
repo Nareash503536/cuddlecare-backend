@@ -28,11 +28,16 @@ public class BottleFeedRestController {
 
     }
     @GetMapping("/bottlefeeding/all")
-    public ResponseEntity <Optional<BottleFeeding>> getBottleFeeddetails(@RequestParam(name = "id") Long id){
-        Optional<BottleFeeding>  bottleFeedings= bottlefeedservice.getFeedingDetails(id);
+    public ResponseEntity <List<BottleFeeding>> getBottleFeeddetails(){
+        List<BottleFeeding> bottleFeedings = bottlefeedservice.getFeedingDetails();
         return new ResponseEntity<>(bottleFeedings, HttpStatus.OK);
     }
 
+    @GetMapping("/bottlefeeding/allDate")
+    public ResponseEntity<List<BottleFeeding>> getfeedingsByDate(){
+        List<BottleFeeding> bottleFeedings = bottlefeedservice.getlastthreeBFeeding();
+        return new ResponseEntity<>(bottleFeedings, HttpStatus.OK);
+    }
 
 
 

@@ -42,6 +42,8 @@ public class SecurityConfiguration {
         http.authorizeRequests().antMatchers("/ingredient/**").permitAll();
         http.authorizeRequests().antMatchers("/foodFeeding/**").permitAll();
         http.authorizeRequests().antMatchers("/foodingredient/**").permitAll();
+        http.authorizeRequests().antMatchers("/bottlefeeding/**").permitAll();
+        http.authorizeRequests().antMatchers("/BreastFeeding/**").permitAll();
         // http.authorizeRequests().antMatchers("/acceptBabyRequest/**").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();

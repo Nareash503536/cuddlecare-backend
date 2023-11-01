@@ -12,8 +12,7 @@ import java.util.Date;
 
 public class BottleFeedingDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long bottleFeedingID;
     private String feedingTime;
     private Date feedingDate;
